@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jenkinspod
+  labels:
+    app: web
+spec:
+  containers:
+  - image: jenkins/jenkins:lts
+    name: nginx
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 250m
+        memory: 256Mi
+    ports:
+      - name: http-port
+        containerPort: 8080
+      - name: jnlp-port
+        containerPort: 50000
+    volumeMounts:
+      - name: mount
+        mountPath: /var/jenkins_home
+  volumes:
+      - name: mount
+        azureDisk:
+          kind: Managed
+          diskName: myAKSDisk
+          diskURI: /subscriptions/3dea455a-e198-4875-a609-b61d2394a1bf/resourceGroups/MC_aksTest_aksKluster_eastus/providers/Microsoft.Compute/disks/myAKSDisk

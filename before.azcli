@@ -1,0 +1,10 @@
+#login with azure cloud
+az login
+
+#Login AKS previously created
+az aks get-credentials --resource-group aksTest --name aksKluster 
+
+#get nodes to test connection
+kubectl get sc
+
+

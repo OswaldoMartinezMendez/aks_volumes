@@ -1,0 +1,17 @@
+
+#Create namespace at cluster aks
+kubectl apply -f Manually/ns.yaml
+
+#Check namespace
+kubectl get ns
+
+#Create pod from .yaml file
+kubectl apply -f Manually/pod.yaml --namespace cicd
+    #result: pod/jenkins-app created
+
+#Create load balancer
+kubectl apply --namespace cicd -f Manually/loadbalancer.yaml
+
+
+#Create clusterip
+kubectl apply --namespace cicd -f Manually/clusterip.yaml

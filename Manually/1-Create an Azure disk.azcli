@@ -1,0 +1,19 @@
+#Query to get "node resource group"
+az aks show --resource-group aksTest --name aksKluster --query nodeResourceGroup -o tsv
+    # result: MC_aksTest_aksKluster_eastus
+
+#Create azure disk and output its id
+az disk create \
+    --resource-group MC_aksTest_aksKluster_eastus  \
+    --name myAKSDisk  \
+    --size-gb 20 \
+    --sku Standard_LRS \
+    --query id -o tsv
+
+    #result: /subscriptions/3dea455a-e198-4875-a609-b61d2394a1bf/resourceGroups/MC_aksTest_aksKluster_eastus/providers/Microsoft.Compute/disks/myAKSDisk
+
+#
+
+
+
+
